@@ -1,5 +1,3 @@
-import 'package:easyfood/models/userModels/UserAccount.dart';
-
 class ShopAccount {
   String userId;
   String phone;
