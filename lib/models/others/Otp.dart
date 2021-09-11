@@ -1,5 +1,3 @@
-import 'package:easyfood/models/userModels/UserAccount.dart';
-
 class Otp {
   int userId;
   int otp;
