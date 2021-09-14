@@ -14,43 +14,83 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import 'package:easyfood/models/userModels/UserProfile.dart';
-import 'package:easyfood/resources/AuthMethod.dart';
-import 'package:easyfood/screens/HomePage.dart';
-import 'package:easyfood/screens/login/UserLoginPage.dart';
+// import 'package:cenafood/models/userModels/UserProfile.dart';
+// import 'package:cenafood/resources/AuthMethod.dart';
+// import 'package:cenafood/screens/login/UserLoginPage.dart';
+import 'package:cenafood/shared/theme.dart';
+import 'package:cenafood/states/bloc/page_bloc.dart';
+import 'package:cenafood/states/bloc/user_bloc.dart';
+import 'package:cenafood/states/provider/navigation_provider.dart';
+import 'package:cenafood/states/provider/validation_provider.dart';
+import 'package:cenafood/ui/screens/wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //await GetStorage.init();
+  //await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) => {
+            runApp(CenaFood()),
+          });
 }
 
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final AuthMethods _authMethods = AuthMethods();
+/// Declaring root class of this project.
+class CenaFood extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Food App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: null, //UniversalVariables.orangeAccentColor,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: FutureBuilder(
-        future: _authMethods.getUserAccount("admin", "admin"),
-        builder: (context, AsyncSnapshot<UserProfile> snapshot) {
-          if (snapshot.hasData) {
-            return UserLoginPage();
-          } else {
-            return UserLoginPage();
-          }
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => PageBloc()),
+        BlocProvider(create: (_) => UserBloc()),
+      ],
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ValidationProvider()),
+          ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ],
+        child: GetMaterialApp(
+          title: "Cena Food",
+          theme: appTheme,
+          debugShowCheckedModeBanner: false,
+          home: Wrapper(),
+        ),
       ),
     );
   }
 }
+// class CenaFood extends StatefulWidget {
+//   // This widget is the root of your application.
+//   @override
+//   _CenaFoodState createState() => _CenaFoodState();
+// }
+
+// class _CenaFoodState extends State<CenaFood> {
+//   final AuthMethods _authMethods = AuthMethods();
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Food App',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: null, //UniversalVariables.orangeAccentColor,
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//         fontFamily: "Enriqueta",
+//       ),
+//       home: FutureBuilder(
+//         future: _authMethods.getUserAccount("admin", "admin"),
+//         builder: (context, AsyncSnapshot<UserProfile> snapshot) {
+//           if (snapshot.hasData) {
+//             return UserLoginPage();
+//           } else {
+//             return UserLoginPage();
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }

@@ -1,6 +1,6 @@
-import 'package:easyfood/models/shipperModels/ShipperAccount.dart';
-import 'package:easyfood/models/shopModels/ShopAccount.dart';
-import 'package:easyfood/models/userModels/UserAccount.dart';
+import 'package:cenafood/models/shipperModels/ShipperAccount.dart';
+import 'package:cenafood/models/shopModels/ShopAccount.dart';
+import 'package:cenafood/models/userModels/UserAccount.dart';
 
 class Order {
   int orderId;

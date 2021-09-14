@@ -14,18 +14,18 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import 'package:easyfood/blocs/FoodDetailPageBloc.dart';
-import 'package:easyfood/models/shopModels/ShopProduct.dart';
-import 'package:easyfood/utils/universal_variables.dart';
-import 'package:easyfood/widgets/FoodTitleWidget.dart';
+import 'package:cenafood/states/blocs/FoodDetailPageBloc.dart';
+import 'package:cenafood/models/shopModels/ShopProduct.dart';
+import 'package:cenafood/utils/universal_variables.dart';
+import 'package:cenafood/widgets/FoodTitleWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
-class FoodDetailPage extends StatelessWidget {
+class Food1DetailPage extends StatelessWidget {
   final ShopProduct food;
-  FoodDetailPage({required this.food});
+  Food1DetailPage({required this.food});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

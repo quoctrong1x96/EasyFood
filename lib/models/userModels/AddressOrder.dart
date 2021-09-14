@@ -1,6 +1,6 @@
-import 'package:easyfood/models/others/Location.dart';
-import 'package:easyfood/models/userModels/AddressType.dart';
-import 'package:easyfood/models/userModels/UserAccount.dart';
+import 'package:cenafood/models/others/Location.dart';
+import 'package:cenafood/models/userModels/AddressType.dart';
+import 'package:cenafood/models/userModels/UserAccount.dart';
 
 class AddressOrder {
   UserAccount userAccount;

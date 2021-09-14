@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:easyfood/models/shopModels/ShopProduct.dart';
-import 'package:easyfood/screens/shop/FoodDetailPage.dart';
-import 'package:easyfood/utils/universal_variables.dart';
+import 'package:cenafood/models/shopModels/ShopProduct.dart';
+import 'package:cenafood/screens/shop/FoodDetailPage.dart';
+import 'package:cenafood/utils/universal_variables.dart';
 import 'package:flutter/material.dart';
 
 class FoodTitleWidget extends StatelessWidget {
@@ -17,7 +17,7 @@ class FoodTitleWidget extends StatelessWidget {
           context,
           PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 500),
-              pageBuilder: (_, __, ___) => FoodDetailPage(food: fooddata)));
+              pageBuilder: (_, __, ___) => Food1DetailPage(food: fooddata)));
     }
 
     return GestureDetector(

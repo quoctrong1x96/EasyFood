@@ -14,8 +14,8 @@
 //  * this program.  If not, see <http://www.gnu.org/licenses/>.
 //  */
 
-// import 'package:easyfood/models/userModels/UserProfile.dart';
-// import 'package:easyfood/resources/AuthMethod.dart';
+// import 'package:cenafood/models/userModels/UserProfile.dart';
+// import 'package:cenafood/resources/AuthMethod.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter/scheduler.dart';

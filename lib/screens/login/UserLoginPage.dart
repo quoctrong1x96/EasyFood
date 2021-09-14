@@ -1,6 +1,6 @@
-import 'package:easyfood/blocs/LoginPageBloc.dart';
-import 'package:easyfood/screens/HomePage.dart';
-import 'package:easyfood/utils/universal_variables.dart';
+import 'package:cenafood/screens/Home1Page.dart';
+import 'package:cenafood/states/blocs/LoginPageBloc.dart';
+import 'package:cenafood/utils/universal_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +19,27 @@ class LoginPageContent extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginPageContent> {
+  TextEditingController textNameController = TextEditingController();
+  TextEditingController textPasswordController = TextEditingController();
+  late LoginPageBloc loginPageBloc;
   bool _rememberMe = false;
+  bool _isLoadingLogin = false;
+  bool _isBadLogin = false;
+
+  void gotoHomePage() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Home1Page()));
+  }
+
+  Widget _buildBadLoginText() {
+    return Container(
+      alignment: Alignment.center,
+      child: Text(
+        "Thông tin tài khoản hoặc mật khẩu không đúng",
+        style: TextStyle(color: Colors.red),
+      ),
+    );
+  }
 
   Widget _buildEmailTF() {
     return Column(
@@ -29,20 +49,22 @@ class _LoginScreenState extends State<LoginPageContent> {
           'Tài khoản',
           style: UniversalVariables.LabelStyle,
         ),
-        SizedBox(height: 10.0),
+        SizedBox(height: 2.0),
         Container(
           alignment: Alignment.centerLeft,
           decoration: UniversalVariables.BoxDecorationStyle,
-          height: 60.0,
+          height: 40.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
+            controller: textNameController,
+            onTap: () => setState(() => _isBadLogin = false),
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.white,
@@ -64,20 +86,22 @@ class _LoginScreenState extends State<LoginPageContent> {
           'Mật khẩu',
           style: UniversalVariables.LabelStyle,
         ),
-        SizedBox(height: 10.0),
+        SizedBox(height: 2.0),
         Container(
           alignment: Alignment.centerLeft,
           decoration: UniversalVariables.BoxDecorationStyle,
-          height: 60.0,
+          height: 40.0,
           child: TextField(
+            onTap: () => setState(() => _isBadLogin = false),
             obscureText: true,
+            controller: textPasswordController,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.white,
@@ -93,7 +117,7 @@ class _LoginScreenState extends State<LoginPageContent> {
 
   Widget _buildForgotPasswordBtn() {
     return Container(
-      alignment: Alignment.centerRight,
+      alignment: Alignment.topRight,
       child: TextButton(
         style: UniversalVariables.flatButtonStyle,
         onPressed: () => print('Forgot Password Button Pressed'),
@@ -138,7 +162,27 @@ class _LoginScreenState extends State<LoginPageContent> {
       width: double.infinity,
       child: ElevatedButton(
         style: UniversalVariables.raiseButtonStyle,
-        onPressed: () => print('Login Button Pressed'),
+        onPressed: () {
+          setState(() {
+            _isLoadingLogin = true;
+          });
+          Future.delayed(Duration(seconds: 2)).then((__) {
+            loginPageBloc.Login(
+                    textNameController.text, textPasswordController.text)
+                .then((_) {
+              gotoHomePage();
+              setState(() {
+                _isLoadingLogin = false;
+              });
+            }).onError((error, stackTrace) {
+              setState(() {
+                _isLoadingLogin = false;
+                _isBadLogin = true;
+              });
+              print('Login failure');
+            });
+          });
+        },
         child: Text(
           'ĐĂNG NHẬP',
           style: TextStyle(
@@ -163,7 +207,7 @@ class _LoginScreenState extends State<LoginPageContent> {
             fontWeight: FontWeight.w400,
           ),
         ),
-        SizedBox(height: 20.0),
+        SizedBox(height: 8.0),
         Text(
           'Đăng nhập bằng:',
           style: UniversalVariables.LabelStyle,
@@ -176,8 +220,8 @@ class _LoginScreenState extends State<LoginPageContent> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 60.0,
-        width: 60.0,
+        height: 40.0,
+        width: 40.0,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,
@@ -234,7 +278,7 @@ class _LoginScreenState extends State<LoginPageContent> {
               ),
             ),
             TextSpan(
-              text: 'Tạo tài khoản',
+              text: ' Tạo tài khoản',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14.0,
@@ -249,81 +293,87 @@ class _LoginScreenState extends State<LoginPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 40.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Đăng nhập',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
+    loginPageBloc = Provider.of<LoginPageBloc>(context);
+    print(_isLoadingLogin.toString());
+    return _isLoadingLogin
+        ? Center(child: CircularProgressIndicator())
+        : Scaffold(
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color(0xFF73AEF5),
+                            Color(0xFF61A4F1),
+                            Color(0xFF478DE0),
+                            Color(0xFF398AE5),
+                          ],
+                          stops: [0.1, 0.4, 0.7, 0.9],
                         ),
                       ),
-                      SizedBox(height: 7.0),
-                      CircleAvatar(
-                        radius: 20.0,
-                        backgroundImage: AssetImage('assets/imgs/logo.jpg'),
-                        backgroundColor: Colors.transparent,
-                        // child: Image(
-                        //   image:
-                        //   height: 50.0,
-                        // ),
+                    ),
+                    Container(
+                      height: double.infinity,
+                      child: SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 40.0,
+                          vertical: 40.0,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              'Đăng nhập',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'OpenSans',
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10.0),
+                            if (_isBadLogin) _buildBadLoginText(),
+                            CircleAvatar(
+                              radius: 20.0,
+                              backgroundImage:
+                                  AssetImage('assets/imgs/logo.jpg'),
+                              backgroundColor: Colors.transparent,
+                              // child: Image(
+                              //   image:
+                              //   height: 50.0,
+                              // ),
+                            ),
+                            SizedBox(height: 7.0),
+                            _buildEmailTF(),
+                            _buildPasswordTF(),
+                            _buildForgotPasswordBtn(),
+                            _buildRememberMeCheckbox(),
+                            _buildLoginBtn(),
+                            _buildSignInWithText(),
+                            _buildSocialBtnRow(),
+                            _buildSignupBtn(),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 7.0),
-                      _buildEmailTF(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
-                      _buildLoginBtn(),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      _buildSignupBtn(),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+              ),
+            ),
+          );
   }
 }
 
@@ -415,10 +465,7 @@ class _LoginScreenState extends State<LoginPageContent> {
 //     );
 //   }
 
-//   gotoHomePage() {
-//     Navigator.push(
-//         context, MaterialPageRoute(builder: (context) => HomePage()));
-//   }
+
 
 //   gotoRegisterPage() {
 //     // Navigator.pushReplacement(

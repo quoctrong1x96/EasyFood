@@ -1,7 +1,7 @@
-import 'package:easyfood/models/others/ActiveState.dart';
-import 'package:easyfood/models/ranking/Rating.dart';
-import 'package:easyfood/models/shopModels/ShopAccount.dart';
-import 'package:easyfood/models/shopModels/ShopCategory.dart';
+import 'package:cenafood/models/others/ActiveState.dart';
+import 'package:cenafood/models/ranking/Rating.dart';
+import 'package:cenafood/models/shopModels/ShopAccount.dart';
+import 'package:cenafood/models/shopModels/ShopCategory.dart';
 import 'package:flutter/material.dart';
 
 class Shop {
