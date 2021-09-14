@@ -1,4 +1,4 @@
-import 'package:easyfood/models/userModels/UserProfile.dart';
+import 'package:cenafood/models/userModels/UserProfile.dart';
 
 class AuthMethods {
   // ignore: non_constant_identifier_names
@@ -30,8 +30,8 @@ class AuthMethods {
         socialNetworkId: 1,
         rankingId: 1,
         profileId: 1,
-        name: "Bùi Quốc Trọng",
-        birthday: DateTime.parse("dd/MM/yyyy"),
+        name: userAccout,
+        birthday: DateTime.now(),
         email: "trongbq.bpc@vnpt.vn",
         phoneNumber: "0949 412 112",
         status: 1,
@@ -47,9 +47,8 @@ class AuthMethods {
       String userAccount, String password) async {
     final UserProfile user = await getUserAccount(userAccount, password);
 
-    assert(user.isEmpty(), null);
+    assert(user.name == "Bui Quoc Trong", null);
     print('signInEmail succeeded: $userAccount');
-
     return user;
   }
 

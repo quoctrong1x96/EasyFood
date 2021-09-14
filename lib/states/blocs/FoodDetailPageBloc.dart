@@ -16,8 +16,8 @@
 
 import 'dart:math';
 
-import 'package:easyfood/models/shopModels/ShopProduct.dart';
-import 'package:easyfood/resources/AuthMethod.dart';
+import 'package:cenafood/models/shopModels/ShopProduct.dart';
+import 'package:cenafood/resources/AuthMethod.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

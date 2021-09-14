@@ -1,4 +1,4 @@
-import 'package:easyfood/models/ranking/Rating.dart';
+import 'package:cenafood/models/ranking/Rating.dart';
 
 class ShopProduct {
   int shopProductId;

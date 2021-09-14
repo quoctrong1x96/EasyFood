@@ -1,6 +1,6 @@
-import 'package:easyfood/models/ranking/Ranking.dart';
-import 'package:easyfood/models/shipperModels/ShipperAccount.dart';
-import 'package:easyfood/models/userModels/Gender.dart';
+import 'package:cenafood/models/ranking/Ranking.dart';
+import 'package:cenafood/models/shipperModels/ShipperAccount.dart';
+import 'package:cenafood/models/userModels/Gender.dart';
 
 class ShipperProfile {
   ShipperAccount shipperAccount;

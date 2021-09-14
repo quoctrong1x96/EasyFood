@@ -1,7 +1,7 @@
-import 'package:easyfood/blocs/HomePageBloc.dart';
-import 'package:easyfood/screens/shop/FoodDetailPage.dart';
-import 'package:easyfood/utils/universal_variables.dart';
-import 'package:easyfood/widgets/FoodTitleWidget.dart';
+import 'package:cenafood/states/blocs/HomePageBloc.dart';
+import 'package:cenafood/screens/shop/FoodDetailPage.dart';
+import 'package:cenafood/utils/universal_variables.dart';
+import 'package:cenafood/widgets/FoodTitleWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -119,7 +119,7 @@ class _HomePageContentState extends State<HomePageContent> {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => FoodDetailPage(food: item))),
+                      builder: (context) => Food1DetailPage(food: item))),
               child: Container(
                 margin: EdgeInsets.all(5.0),
                 child: ClipRRect(

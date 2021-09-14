@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(easyfood LANGUAGES CXX)
+project(cenafood LANGUAGES CXX)
 
-set(BINARY_NAME "easyfood")
+set(BINARY_NAME "cenafood")
 
 cmake_policy(SET CMP0063 NEW)
 

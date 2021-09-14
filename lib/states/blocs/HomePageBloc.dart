@@ -1,7 +1,7 @@
-import 'package:easyfood/models/others/CategoryProduct.dart';
-import 'package:easyfood/models/shopModels/ShopProduct.dart';
-import 'package:easyfood/models/userModels/UserProfile.dart';
-import 'package:easyfood/resources/AuthMethod.dart';
+import 'package:cenafood/models/others/CategoryProduct.dart';
+import 'package:cenafood/models/shopModels/ShopProduct.dart';
+import 'package:cenafood/models/userModels/UserProfile.dart';
+import 'package:cenafood/resources/AuthMethod.dart';
 import 'package:flutter/foundation.dart';
 
 class HomePageBloc with ChangeNotifier {

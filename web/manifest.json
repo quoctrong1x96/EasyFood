@@ -1,6 +1,6 @@
 {
-    "name": "easyfood",
-    "short_name": "easyfood",
+    "name": "cenafood",
+    "short_name": "cenafood",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

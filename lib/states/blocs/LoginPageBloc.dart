@@ -1,4 +1,4 @@
-import 'package:easyfood/resources/AuthMethod.dart';
+import 'package:cenafood/resources/AuthMethod.dart';
 //import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -23,14 +23,12 @@ class LoginPageBloc with ChangeNotifier {
     return null;
   }
 
-  Future<void> validateFormAndLogin(
-      GlobalKey<FormState> formKey, String userName, String password) async {
+  // ignore: non_constant_identifier_names
+  Future<void> Login(String userName, String password) async {
     isLoginPressed = true;
     notifyListeners();
-    if (formKey.currentState!.validate()) {
-      await mAuthMethods.handleSignInEmail(userName, password);
-      isLoginPressed = false;
-      notifyListeners();
-    }
+    await mAuthMethods.handleSignInEmail(userName, password);
+    isLoginPressed = false;
+    notifyListeners();
   }
 }
