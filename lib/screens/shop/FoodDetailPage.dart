@@ -62,7 +62,8 @@ class _FoodDetailPageContentState extends State<FoodDetailPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    foodDetailPageBloc = Provider.of<FoodDetailPageBloc>(context);
+    foodDetailPageBloc =
+        Provider.of<FoodDetailPageBloc>(context, listen: false);
     foodDetailPageBloc.context = context;
     return Scaffold(
         key: _scaffoldKey,

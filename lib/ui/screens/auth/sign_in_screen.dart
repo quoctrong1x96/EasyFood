@@ -35,11 +35,15 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: SystemUiOverlay.values);
 
     final isValidEmail =
-        Provider.of<ValidationProvider>(context).errorEmail == "";
+        Provider.of<ValidationProvider>(context, listen: false).errorEmail ==
+            "";
     final isValidPassword =
-        Provider.of<ValidationProvider>(context).errorPassword == "";
+        Provider.of<ValidationProvider>(context, listen: false).errorPassword ==
+            "";
 
     return Scaffold(
       body: Stack(
@@ -55,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/image/bg_splash.png"),
+                    image: AssetImage("assets/imgs/bg_splash.png"),
                   ),
                 ),
                 child: Center(
@@ -66,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           height: 52,
                         ),
                         Image.asset(
-                          "assets/image/splash_logo.png",
+                          "assets/imgs/splash_logo.png",
                           width: 152,
                           height: 52,
                         ),
@@ -148,7 +152,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             GestureDetector(
                               onTap: () {
                                 context
-                                    .watch<PageBloc>()
+                                    .read<PageBloc>()
                                     .add(GoToCheckEmailScreen());
                                 validation.resetChange();
                               },
@@ -241,7 +245,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                      "assets/image/ic_google.png",
+                                      "assets/imgs/ic_google.png",
                                       width: 19,
                                       height: 20,
                                     ),
@@ -286,7 +290,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                      "assets/image/ic_facebook.png",
+                                      "assets/imgs/ic_facebook.png",
                                       width: 11,
                                       height: 19,
                                     ),
@@ -318,7 +322,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             GestureDetector(
                               onTap: () {
                                 context
-                                    .watch<PageBloc>()
+                                    .read<PageBloc>()
                                     .add(GoToSignUpScreen(Auth(id: '')));
                                 validation.resetChange();
                               },
@@ -352,7 +356,7 @@ class _SignInScreenState extends State<SignInScreen> {
     ResponseUtil response = await AuthRepository.signIn(auth!);
 
     if (response.statusCode == 200) {
-      context.watch<PageBloc>().add(GoToMainScreen());
+      context.read<PageBloc>().add(GoToMainScreen());
       Provider.of<ValidationProvider>(context, listen: false).resetChange();
     } else if (response.statusCode == 450) {
       setState(() {
@@ -383,7 +387,7 @@ class _SignInScreenState extends State<SignInScreen> {
     ResponseUtil response = await SocialAuthService.signInGoogle();
 
     if (response.statusCode == 200) {
-      context.watch<PageBloc>().add(GoToMainScreen());
+      context.read<PageBloc>().add(GoToMainScreen());
       Provider.of<ValidationProvider>(context, listen: false).resetChange();
     } else if (response.statusCode == 422) {
       setState(() {
@@ -414,7 +418,7 @@ class _SignInScreenState extends State<SignInScreen> {
     ResponseUtil response = await SocialAuthService.loginFacebook();
 
     if (response.statusCode == 200) {
-      context.watch<PageBloc>().add(GoToMainScreen());
+      context.read<PageBloc>().add(GoToMainScreen());
       Provider.of<ValidationProvider>(context, listen: false).resetChange();
     } else if (response.statusCode == 422) {
       setState(() {

@@ -293,7 +293,7 @@ class _LoginScreenState extends State<LoginPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    loginPageBloc = Provider.of<LoginPageBloc>(context);
+    loginPageBloc = Provider.of<LoginPageBloc>(context, listen: false);
     print(_isLoadingLogin.toString());
     return _isLoadingLogin
         ? Center(child: CircularProgressIndicator())
@@ -392,7 +392,7 @@ class _LoginScreenState extends State<LoginPageContent> {
 
 //   @override
 //   Widget build(BuildContext context) {
-//     loginPageBloc = Provider.of<LoginPageBloc>(context);
+//     loginPageBloc = Provider.of<LoginPageBloc>(context, listen: false);
 //     return Scaffold(
 //       body: Container(
 //         color: UniversalVariables.whiteColor,

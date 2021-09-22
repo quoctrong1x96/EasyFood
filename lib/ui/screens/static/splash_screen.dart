@@ -8,6 +8,7 @@ import 'package:cenafood/utils/storage_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -25,12 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
     final bool isGPSEnabled = await LocationUtil.isGPSEnabled();
     return Timer(Duration(seconds: 5), () {
       if (!isGPSEnabled) {
-        context.watch<PageBloc>().add(GoToLocationPermissionScreen());
+        context.read<PageBloc>().add(GoToLocationPermissionScreen());
       } else {
         if (StorageUtil.hasStorage('token')) {
-          context.watch<PageBloc>().add(GoToMainScreen());
+          context.read<PageBloc>().add(GoToMainScreen());
         } else {
-          context.watch<PageBloc>().add(GoToSignInScreen());
+          context.read<PageBloc>().add(GoToSignInScreen());
         }
       }
     });
@@ -38,8 +39,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-
+    //SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     return Scaffold(
       body: Container(
         width: deviceWidth(context),
@@ -47,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("assets/image/bg_splash.png"),
+            image: AssetImage("assets/imgs/bg_splash.png"),
           ),
         ),
         child: Center(
@@ -57,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: 110,
               ),
               Image.asset(
-                "assets/image/splash_logo.png",
+                "assets/imgs/splash_logo.png",
                 width: 198,
                 height: 68,
               ),
@@ -65,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: 4,
               ),
               Text(
-                "Fast Food Market",
+                "Gì cũng có - Chọn là giao ngay",
                 style: semiBoldBaseFont.copyWith(
                   fontSize: 16,
                   letterSpacing: -0.42,

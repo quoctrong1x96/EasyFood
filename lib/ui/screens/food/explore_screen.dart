@@ -25,8 +25,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    context.watch<UserBloc>().add(LoadUser());
+    //SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
+    context.read<UserBloc>().add(LoadUser());
 
     return ListView(
       children: [
@@ -45,12 +47,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     height: 45,
                     color: baseColor,
                     child: Image.asset(
-                      "assets/image/ic_location.png",
+                      "assets/imgs/ic_location.png",
                       width: 24,
                       height: 24,
                     ),
                     onPressed: () {
-                      context.watch<PageBloc>().add(GoToMapsScreen());
+                      context.read<PageBloc>().add(GoToMapsScreen());
                     },
                   ),
                 ),
@@ -79,7 +81,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       ),
                       suffixIcon: UnconstrainedBox(
                         child: Image.asset(
-                          "assets/image/ic_search.png",
+                          "assets/imgs/ic_search.png",
                           width: 24,
                           height: 24,
                         ),
@@ -124,7 +126,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       child: Row(
                         children: [
                           Image.asset(
-                            "assets/image/ic_filter.png",
+                            "assets/imgs/ic_filter.png",
                             width: 24,
                             height: 24,
                           ),
@@ -312,7 +314,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         discount: 10,
                         normalPrice: 14.99,
                         discountPrice: 10.99,
-                        image: "assets/image/picture.png",
+                        image: "assets/imgs/picture.png",
                         onTap: () {},
                       ),
                     );
@@ -373,7 +375,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         name: "Crispy Royal",
                         restaurant: "McDonalds",
                         rating: 7.8,
-                        image: "assets/image/image.png",
+                        image: "assets/imgs/image.png",
                         normalPrice: 14.55,
                         discountPrice: 10.35,
                         onTap: () {},

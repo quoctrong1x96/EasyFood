@@ -23,16 +23,19 @@ import 'package:cenafood/states/bloc/user_bloc.dart';
 import 'package:cenafood/states/provider/navigation_provider.dart';
 import 'package:cenafood/states/provider/validation_provider.dart';
 import 'package:cenafood/ui/screens/wrapper.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+// ignore: unused_import
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await GetStorage.init();
-  //await Firebase.initializeApp();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => {
             runApp(CenaFood()),

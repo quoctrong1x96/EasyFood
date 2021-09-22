@@ -10,8 +10,12 @@ class NavigationProvider extends ChangeNotifier {
   /// Mengganti index navigasi halaman utama
   void changeIndex(int index, {int initialPage = 0}) {
     _index = index;
-    _pageIndex.jumpToPage(index);
-    _pageIndex = PageController(initialPage: initialPage);
+    if (_pageIndex.hasClients) {
+      _pageIndex.jumpToPage(index);
+      print("Page: " + _index.toString());
+    }
+
+    //_pageIndex = PageController(initialPage: index);
 
     notifyListeners();
   }

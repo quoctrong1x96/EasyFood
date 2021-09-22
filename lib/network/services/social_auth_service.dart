@@ -16,10 +16,11 @@ class SocialAuthService {
 
     if (googleSignInAccount == null) {
       return ResponseUtil.resultResponse(
-        data: null,
-        message: 'Google Sign In Cancelled',
-        statusCode: 400,
-      );
+          data: [],
+          message: 'Google Sign In Cancelled',
+          statusCode: 400,
+          error: "Google Sign In Cancelled",
+          list: []);
     }
 
     final ResponseUtil response = await AuthRepository.social(
@@ -32,9 +33,7 @@ class SocialAuthService {
 
     if (response.statusCode != 200) {
       return ResponseUtil.resultResponse(
-        data: null,
-        statusCode: 422,
-      );
+          data: [], statusCode: 422, error: "", list: [], message: "");
     }
 
     final GoogleSignInAuthentication googleSignInAuthentication =
@@ -55,10 +54,11 @@ class SocialAuthService {
     StorageUtil.writeStorage('status', 'google');
 
     return ResponseUtil.resultResponse(
-      data: user,
-      message: 'Success Google Sign In',
-      statusCode: 200,
-    );
+        data: user!,
+        message: 'Success Google Sign In',
+        statusCode: 200,
+        error: "",
+        list: []);
   }
 
   static Future<ResponseUtil> signOutGoogle() async {
@@ -69,9 +69,11 @@ class SocialAuthService {
     StorageUtil.removeStorage('status');
 
     return ResponseUtil.resultResponse(
-      message: 'Success Google Sign Out',
-      statusCode: 200,
-    );
+        message: 'Success Google Sign Out',
+        statusCode: 200,
+        data: [],
+        error: "",
+        list: []);
   }
 
   static Future<ResponseUtil> loginFacebook() async {
@@ -93,9 +95,7 @@ class SocialAuthService {
 
       if (response.statusCode != 200) {
         return ResponseUtil.resultResponse(
-          data: null,
-          statusCode: 422,
-        );
+            data: [], statusCode: 422, error: "", list: [], message: "");
       }
 
       final OAuthCredential credential =
@@ -110,17 +110,20 @@ class SocialAuthService {
       StorageUtil.writeStorage('status', 'facebook');
 
       return ResponseUtil.resultResponse(
-        data: user,
-        message: 'Success Facebook Sign In',
-        statusCode: 200,
-      );
+          data: user!,
+          message: 'Success Facebook Sign In',
+          statusCode: 200,
+          error: "",
+          list: []);
       // ignore: nullable_type_in_catch_clause
     } //on FacebookAuthException
     catch (error) {
       return ResponseUtil.resultResponse(
-        message: error.toString(), //.message,
-        statusCode: 400,
-      );
+          message: error.toString(), //.message,
+          statusCode: 400,
+          data: [],
+          error: "",
+          list: []);
     }
   }
 
@@ -132,8 +135,10 @@ class SocialAuthService {
     StorageUtil.removeStorage('status');
 
     return ResponseUtil.resultResponse(
-      message: 'Success Facebook Sign Out',
-      statusCode: 200,
-    );
+        message: 'Success Facebook Sign Out',
+        statusCode: 200,
+        data: [],
+        error: "",
+        list: []);
   }
 }

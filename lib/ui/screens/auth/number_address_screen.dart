@@ -48,7 +48,7 @@ class _NumberAddressScreenState extends State<NumberAddressScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.watch<PageBloc>().add(GoToSignUpScreen(widget.auth));
+        context.read<PageBloc>().add(GoToSignUpScreen(widget.auth));
         return false;
       },
       child: Scaffold(
@@ -65,7 +65,7 @@ class _NumberAddressScreenState extends State<NumberAddressScreen> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/image/bg_splash.png"),
+                      image: AssetImage("assets/imgs/bg_splash.png"),
                     ),
                   ),
                   child: Center(
@@ -82,7 +82,7 @@ class _NumberAddressScreenState extends State<NumberAddressScreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     context
-                                        .watch<PageBloc>()
+                                        .read<PageBloc>()
                                         .add(GoToSignUpScreen(widget.auth));
                                   },
                                   child: Icon(
@@ -106,7 +106,7 @@ class _NumberAddressScreenState extends State<NumberAddressScreen> {
                             height: 36,
                           ),
                           Image.asset(
-                            "assets/image/splash_logo.png",
+                            "assets/imgs/splash_logo.png",
                             width: 152,
                             height: 52,
                           ),
@@ -304,7 +304,7 @@ class _NumberAddressScreenState extends State<NumberAddressScreen> {
 
     if (response.error['phone_number'] == null) {
       await AuthRepository.verification(widget.auth.name!, widget.auth.email!);
-      context.watch<PageBloc>().add(GoToEmailVerificationScreen(widget.auth));
+      context.read<PageBloc>().add(GoToEmailVerificationScreen(widget.auth));
     } else {
       setState(() {
         isClicked = false;

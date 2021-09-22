@@ -30,7 +30,7 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
     return Consumer<ValidationProvider>(
       builder: (context, validation, _) => WillPopScope(
         onWillPop: () async {
-          context.watch<PageBloc>().add(GoToSignInScreen());
+          context.read<PageBloc>().add(GoToSignInScreen());
           validation.resetChange();
           return false;
         },
@@ -49,7 +49,7 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/bg_splash.png"),
+                        image: AssetImage("assets/imgs/bg_splash.png"),
                       ),
                     ),
                     child: Center(
@@ -65,7 +65,7 @@ class _CheckEmailScreenState extends State<CheckEmailScreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     context
-                                        .watch<PageBloc>()
+                                        .read<PageBloc>()
                                         .add(GoToSignInScreen());
                                     validation.resetChange();
                                   },

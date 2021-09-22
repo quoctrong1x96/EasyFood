@@ -1,0 +1,36 @@
+[
+  {
+    "id": 222,
+    "name": "Cena Foodie",
+    "email": "designerlove96@gmail.com",
+    "image": "assets/imgs/pasta_category.jpg",
+    "phoneNumber": "0949412112",
+    "addresses": [
+      {
+        "type": "home",
+        "address": "85, Phạm Ngũ Lão, Phường Tân Phú, Thành phố Đồng Xoài, Tỉnh Bình Phước"
+      },
+      {
+        "type": "current",
+        "address": "1137 Phú Riềng Đỏ, Phường Tân Bình, Thành phố Đồng Xoài, Tỉnh Bình Phước"
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Cena Foodie Admin",
+    "email": "admin@cenafoodie.vn",
+    "image": "assets/imgs/pasta_category.jpg",
+    "phoneNumber": "0999999999",
+    "addresses": [
+      {
+        "type": "home",
+        "address": "888, Phạm Ngũ Lão, Phường Tân Phú, Thành phố Đồng Xoài, Tỉnh Bình Phước"
+      },
+      {
+        "type": "company",
+        "address": "3333 Phú Riềng Đỏ, Phường Tân Bình, Thành phố Đồng Xoài, Tỉnh Bình Phước"
+      }
+    ]
+  }
+]

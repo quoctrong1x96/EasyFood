@@ -21,8 +21,9 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-
+    //SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     return Scaffold(
       body: Container(
         width: deviceWidth(context),
@@ -30,7 +31,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("assets/image/bg_splash.png"),
+            image: AssetImage("assets/imgs/bg_splash.png"),
           ),
         ),
         child: Center(
@@ -40,7 +41,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                 height: 90,
               ),
               Image.asset(
-                "assets/image/splash_logo.png",
+                "assets/imgs/splash_logo.png",
                 width: 152,
                 height: 52,
               ),
@@ -48,7 +49,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                 height: 3,
               ),
               Text(
-                "Fast Food Market",
+                "Gì cũng có - Chọn là giao ngay",
                 style: semiBoldBaseFont.copyWith(
                   fontSize: 13,
                   letterSpacing: -0.33,
@@ -74,7 +75,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        "assets/image/ic_location_permission.png",
+                        "assets/imgs/ic_location_permission.png",
                         width: 46,
                         height: 56,
                       ),
@@ -153,9 +154,9 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
 
     if (isGranted) {
       if (StorageUtil.hasStorage('token')) {
-        context.watch<PageBloc>().add(GoToMainScreen());
+        context.read<PageBloc>().add(GoToMainScreen());
       } else {
-        context.watch<PageBloc>().add(GoToSignInScreen());
+        context.read<PageBloc>().add(GoToSignInScreen());
       }
     } else {
       setState(() {
