@@ -33,8 +33,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-
+    //SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     return Scaffold(
       body: Stack(
         children: [
@@ -50,7 +51,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/image/bg_splash.png"),
+                    image: AssetImage("assets/imgs/bg_splash.png"),
                   ),
                 ),
                 child: Center(
@@ -71,7 +72,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           height: 36,
                         ),
                         Image.asset(
-                          "assets/image/splash_logo.png",
+                          "assets/imgs/splash_logo.png",
                           width: 152,
                           height: 52,
                         ),
@@ -219,7 +220,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     );
 
     if (response.statusCode == 200) {
-      context.watch<PageBloc>().add(GoToSignInScreen());
+      context.read<PageBloc>().add(GoToSignInScreen());
       Provider.of<ValidationProvider>(context, listen: false).resetChange();
 
       StorageUtil.removeStorage('reset_token');

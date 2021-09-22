@@ -1,0 +1,34 @@
+[
+  {
+    "id":1,
+    "name":"Thức ăn nhanh",
+    "restaurant":"Hạng a",
+    "image":"http://via.placeholder.com/150x150",
+    "rating":"4.5",
+    "price":"19.5"
+  },
+  {
+    "id":2,
+    "name":"Thức ăn chay",
+    "restaurant":"Hạng B",
+    "image":"http://via.placeholder.com/150x150",
+    "rating":"3.5",
+    "price":"19.5"
+  },
+  {
+    "id":3,
+    "name":"Đồ uống lạnh",
+    "restaurant":"Hạng C",
+    "image":"http://via.placeholder.com/150x150",
+    "rating":"5",
+    "price":"19.5"
+  },
+  {
+    "id":1,
+    "name":"Đồ uống nóng",
+    "restaurant":"Hạng D",
+    "image":"http://via.placeholder.com/150x150",
+    "rating":"4.0",
+    "price":"19.5"
+  }  
+]

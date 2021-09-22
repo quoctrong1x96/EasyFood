@@ -10,6 +10,7 @@ import 'package:cenafood/ui/screens/food/maps_screen.dart';
 import 'package:cenafood/ui/screens/static/location_permission_screen.dart';
 import 'package:cenafood/ui/screens/static/main_screen.dart';
 import 'package:cenafood/ui/screens/static/splash_screen.dart';
+import 'package:cenafood/ui/widgets/drawer_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,6 +51,8 @@ class _WrapperState extends State<Wrapper> {
                                             ? MainScreen()
                                             : (pageState is OnMapsScreen)
                                                 ? MapsScreen()
-                                                : Container());
+                                                : (pageState is OnUserScreen)
+                                                    ? DrawerLayout()
+                                                    : Container());
   }
 }

@@ -32,6 +32,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnResetPasswordScreen();
     } else if (event is GoToMainScreen) {
       yield OnMainScreen();
+    } else if (event is GoToUserScreen) {
+      yield OnUserScreen();
     } else if (event is GoToMapsScreen) {
       yield OnMapsScreen();
     }

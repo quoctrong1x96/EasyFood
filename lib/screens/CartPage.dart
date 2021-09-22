@@ -54,7 +54,7 @@
   
 //   @override
 //   Widget build(BuildContext context) {
-//     cartPageBloc = Provider.of<CartPageBloc>(context);
+//     cartPageBloc = Provider.of<CartPageBloc>(context, listen: false);
 //     cartPageBloc.context = context;
 //     return Scaffold(
 //       appBar: AppBar(elevation: 0.0,backgroundColor: Colors.transparent,),

@@ -2,13 +2,13 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class ValidationProvider extends ChangeNotifier {
-  late String _errorName;
-  late String _errorEmail;
-  late String _errorPassword;
-  late String _errorPasswordConfirmation;
-  late String _errorPhoneNumber;
-  late String _errorAddress;
-  late String _errorVerificationCode;
+  late String _errorName = "";
+  late String _errorEmail = "";
+  late String _errorPassword = "";
+  late String _errorPasswordConfirmation = "";
+  late String _errorPhoneNumber = "";
+  late String _errorAddress = "";
+  late String _errorVerificationCode = "";
   bool _isAcceptTerm = false;
 
   String get errorName => _errorName;

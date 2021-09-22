@@ -36,7 +36,7 @@ class _HomePageContentState extends State<HomePageContent> {
 
   @override
   Widget build(BuildContext context) {
-    homePageBloc = Provider.of<HomePageBloc>(context);
+    homePageBloc = Provider.of<HomePageBloc>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         iconTheme: new IconThemeData(color: Colors.white),

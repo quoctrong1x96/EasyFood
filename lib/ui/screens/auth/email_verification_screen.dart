@@ -36,7 +36,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     return Consumer<ValidationProvider>(
       builder: (context, validation, _) => WillPopScope(
         onWillPop: () async {
-          context.watch<PageBloc>().add(GoToNumberAddressScreen(widget.auth));
+          context.read<PageBloc>().add(GoToNumberAddressScreen(widget.auth));
           validation.resetVerificationCode();
           return false;
         },
@@ -55,7 +55,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/bg_splash.png"),
+                        image: AssetImage("assets/imgs/bg_splash.png"),
                       ),
                     ),
                     child: Center(
@@ -70,7 +70,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                                 alignment: Alignment.centerLeft,
                                 child: GestureDetector(
                                   onTap: () {
-                                    context.watch<PageBloc>().add(
+                                    context.read<PageBloc>().add(
                                         GoToNumberAddressScreen(widget.auth));
                                     validation.resetVerificationCode();
                                   },
@@ -199,7 +199,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     );
 
     if (response.statusCode == 200) {
-      context.watch<PageBloc>().add(GoToMainScreen());
+      context.read<PageBloc>().add(GoToMainScreen());
       Provider.of<ValidationProvider>(context, listen: false).resetChange();
       Provider.of<ValidationProvider>(context, listen: false)
           .resetChangeNumberAddress();

@@ -9,22 +9,22 @@ class FoodCategoryRepository {
 
     final String token = StorageUtil.readStorage('token');
 
-    final response = await Dio().get(
-      apiURL,
-      options: Options(
-        followRedirects: false,
-        validateStatus: (status) {
-          return status! <= 500;
-        },
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      ),
-    );
+    // final response = await Dio().get(
+    //   apiURL,
+    //   options: Options(
+    //     followRedirects: false,
+    //     validateStatus: (status) {
+    //       return status! <= 500;
+    //     },
+    //     headers: {
+    //       'Authorization': 'Bearer $token',
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //   ),
+    // );
 
-    List foodCategories = response.data['data'];
+    List foodCategories = []; //response.data['data'];
 
     return foodCategories.map((data) => FoodCategory.fromJson(data)).toList();
   }

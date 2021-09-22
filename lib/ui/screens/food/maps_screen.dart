@@ -18,7 +18,7 @@ class _MapsScreenState extends State<MapsScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.watch<PageBloc>().add(GoToMainScreen());
+        context.read<PageBloc>().add(GoToMainScreen());
         return false;
       },
       child: Scaffold(
@@ -48,13 +48,13 @@ class _MapsScreenState extends State<MapsScreen> {
                                 height: 45,
                                 color: baseColor,
                                 child: Image.asset(
-                                  "assets/image/ic_back.png",
+                                  "assets/imgs/ic_back.png",
                                   width: 16,
                                   height: 16,
                                 ),
                                 onPressed: () {
                                   context
-                                      .watch<PageBloc>()
+                                      .read<PageBloc>()
                                       .add(GoToMapsScreen());
                                 },
                               ),
@@ -84,7 +84,7 @@ class _MapsScreenState extends State<MapsScreen> {
                                   ),
                                   suffixIcon: UnconstrainedBox(
                                     child: Image.asset(
-                                      "assets/image/ic_search.png",
+                                      "assets/imgs/ic_search.png",
                                       width: 24,
                                       height: 24,
                                     ),

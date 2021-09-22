@@ -50,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Consumer<ValidationProvider>(
       builder: (context, validation, _) => WillPopScope(
         onWillPop: () async {
-          context.watch<PageBloc>().add(GoToSignInScreen());
+          context.read<PageBloc>().add(GoToSignInScreen());
           validation.resetChange();
           validation.resetChangeNumberAddress();
           validation.resetVerificationCode();
@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/bg_splash.png"),
+                        image: AssetImage("assets/imgs/bg_splash.png"),
                       ),
                     ),
                     child: Center(
@@ -86,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     context
-                                        .watch<PageBloc>()
+                                        .read<PageBloc>()
                                         .add(GoToSignInScreen());
                                     validation.resetChange();
                                     validation.resetChangeNumberAddress();
@@ -113,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 36,
                           ),
                           Image.asset(
-                            "assets/image/splash_logo.png",
+                            "assets/imgs/splash_logo.png",
                             width: 152,
                             height: 52,
                           ),
@@ -274,7 +274,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               GestureDetector(
                                 onTap: () {
                                   context
-                                      .watch<PageBloc>()
+                                      .read<PageBloc>()
                                       .add(GoToSignInScreen());
                                   validation.resetChange();
                                   validation.resetChangeNumberAddress();
@@ -324,7 +324,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
 
     if (response.error['email'] == null) {
-      context.watch<PageBloc>().add(GoToNumberAddressScreen(widget.auth));
+      context.read<PageBloc>().add(GoToNumberAddressScreen(widget.auth));
     } else {
       setState(() {
         isClicked = false;

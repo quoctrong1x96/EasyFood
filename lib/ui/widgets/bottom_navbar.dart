@@ -4,12 +4,14 @@ import 'package:cenafood/shared/size.dart';
 import 'package:cenafood/shared/style.dart';
 import 'package:cenafood/states/provider/navigation_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    NavigationProvider navigation = Provider.of<NavigationProvider>(context);
+    NavigationProvider navigation =
+        Provider.of<NavigationProvider>(context, listen: false);
 
     return Align(
       alignment: Alignment.bottomCenter,
@@ -20,7 +22,7 @@ class BottomNavbar extends StatelessWidget {
           horizontal: 24,
         ),
         decoration: BoxDecoration(
-          color: accentColor,
+          color: Colors.greenAccent, //accentColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
@@ -32,7 +34,7 @@ class BottomNavbar extends StatelessWidget {
             _buildBottomNavBarItem(
               context,
               label: "Explore",
-              icon: "assets/image/ic_explore.png",
+              icon: "assets/imgs/ic_explore.png",
               index: 0,
               onTap: () {
                 navigation.changeIndex(0);
@@ -41,7 +43,7 @@ class BottomNavbar extends StatelessWidget {
             _buildBottomNavBarItem(
               context,
               label: "Offers",
-              icon: "assets/image/ic_offers.png",
+              icon: "assets/imgs/ic_offers.png",
               index: 1,
               onTap: () {
                 navigation.changeIndex(1);
@@ -50,7 +52,7 @@ class BottomNavbar extends StatelessWidget {
             _buildBottomNavBarItem(
               context,
               label: "Cart",
-              icon: "assets/image/ic_cart.png",
+              icon: "assets/imgs/ic_cart.png",
               index: 2,
               onTap: () {
                 navigation.changeIndex(2);
@@ -59,7 +61,7 @@ class BottomNavbar extends StatelessWidget {
             _buildBottomNavBarItem(
               context,
               label: "Profile",
-              icon: "assets/image/ic_profile.png",
+              icon: "assets/imgs/ic_profile.png",
               index: 3,
               onTap: () {
                 navigation.changeIndex(3);
@@ -72,9 +74,14 @@ class BottomNavbar extends StatelessWidget {
   }
 
   Widget _buildBottomNavBarItem(BuildContext context,
-      {String? label, String? icon, int? index, VoidCallback? onTap}) {
-    NavigationProvider navigation = Provider.of<NavigationProvider>(context);
-
+      {required String label,
+      required String icon,
+      required int index,
+      required Function onTap}) {
+    NavigationProvider navigation =
+        Provider.of<NavigationProvider>(context, listen: false);
+    print("Nav.Index = " + navigation.index.toString());
+    print("Button.index = " + index.toString());
     return (navigation.index == index)
         ? Container(
             padding: EdgeInsets.symmetric(
@@ -88,7 +95,7 @@ class BottomNavbar extends StatelessWidget {
             child: Row(
               children: [
                 Image.asset(
-                  icon!,
+                  icon,
                   width: 26,
                   height: 26,
                 ),
@@ -96,7 +103,7 @@ class BottomNavbar extends StatelessWidget {
                   width: 4,
                 ),
                 Text(
-                  label!,
+                  label,
                   style: mediumBaseFont.copyWith(
                     fontSize: 12,
                   ),
@@ -111,11 +118,11 @@ class BottomNavbar extends StatelessWidget {
             child: ElevatedButton(
               style: flatButtonStyle,
               child: Image.asset(
-                icon!,
+                icon,
                 width: 26,
                 height: 26,
               ),
-              onPressed: onTap,
+              onPressed: () => {onTap},
             ),
           );
   }
