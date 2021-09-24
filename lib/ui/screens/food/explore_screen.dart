@@ -10,12 +10,27 @@ import 'package:cenafood/states/bloc/user_bloc.dart';
 import 'package:cenafood/ui/widgets/base_button.dart';
 import 'package:cenafood/ui/widgets/image_placeholder.dart';
 import 'package:cenafood/ui/widgets/rating_stars.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'package:flutter/material.dart';
+
+// class ExploreScreen extends StatelessWidget {
+//   const ExploreScreen();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Center(
+//         child: Text("Explore Screen"),
+//       ),
+//     );
+//   }
+// }
+
 class ExploreScreen extends StatefulWidget {
+  const ExploreScreen();
   @override
   _ExploreScreenState createState() => _ExploreScreenState();
 }

@@ -33,7 +33,7 @@ class BottomNavbar extends StatelessWidget {
           children: [
             _buildBottomNavBarItem(
               context,
-              label: "Explore",
+              label: "ExploreAA",
               icon: "assets/imgs/ic_explore.png",
               index: 0,
               onTap: () {
