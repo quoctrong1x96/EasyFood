@@ -37,7 +37,7 @@ class BottomNavbar extends StatelessWidget {
               icon: "assets/imgs/ic_explore.png",
               index: 0,
               onTap: () {
-                navigation.changeIndex(0);
+                navigation.changeIndex(0, initialPage: 0);
               },
             ),
             _buildBottomNavBarItem(
@@ -46,7 +46,7 @@ class BottomNavbar extends StatelessWidget {
               icon: "assets/imgs/ic_offers.png",
               index: 1,
               onTap: () {
-                navigation.changeIndex(1);
+                navigation.changeIndex(1, initialPage: 1);
               },
             ),
             _buildBottomNavBarItem(
@@ -55,7 +55,7 @@ class BottomNavbar extends StatelessWidget {
               icon: "assets/imgs/ic_cart.png",
               index: 2,
               onTap: () {
-                navigation.changeIndex(2);
+                navigation.changeIndex(2, initialPage: 2);
               },
             ),
             _buildBottomNavBarItem(
@@ -64,7 +64,7 @@ class BottomNavbar extends StatelessWidget {
               icon: "assets/imgs/ic_profile.png",
               index: 3,
               onTap: () {
-                navigation.changeIndex(3);
+                navigation.changeIndex(3, initialPage: 3);
               },
             ),
           ],
